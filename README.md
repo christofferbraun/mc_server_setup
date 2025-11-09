@@ -258,22 +258,62 @@ Add:
 
 ## World Reset Script
 
-Quick script to reset hardcore world after deaths.
+### Manual Reset
 
-### Installation
+Quick script to manually reset hardcore world.
 
 ```bash
 sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server_setup/main/scripts/reset-world.sh -O /usr/local/bin/reset-mc-world
 sudo chmod +x /usr/local/bin/reset-mc-world
 ```
 
-### Usage
-
-```bash
-reset-mc-world
-```
+Usage: `reset-mc-world`
 
 See [scripts/reset-world.sh](scripts/reset-world.sh) for details.
+
+### Automatic Reset on Death (Recommended for Hardcore)
+
+Automatically monitors server logs and resets the world when any player dies.
+
+**Installation:**
+
+```bash
+# Download death monitor script
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server_setup/main/scripts/death-monitor.sh -O /opt/minecraft/death-monitor.sh
+sudo chmod +x /opt/minecraft/death-monitor.sh
+sudo touch /var/log/minecraft-death-monitor.log
+
+# Download and install service
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server_setup/main/configs/minecraft-death-monitor.service -O /etc/systemd/system/minecraft-death-monitor.service
+
+# Enable and start
+sudo systemctl daemon-reload
+sudo systemctl enable minecraft-death-monitor
+sudo systemctl start minecraft-death-monitor
+
+# Verify it's running
+sudo systemctl status minecraft-death-monitor
+```
+
+**How it works:**
+1. Monitors logs in real-time for death messages
+2. Broadcasts countdown warnings (15, 10, 5 seconds)
+3. Automatically backs up and deletes world
+4. Restarts server with fresh world
+
+**Monitor the death monitor:**
+```bash
+tail -f /var/log/minecraft-death-monitor.log
+sudo journalctl -u minecraft-death-monitor -f
+```
+
+**Disable auto-reset:**
+```bash
+sudo systemctl stop minecraft-death-monitor
+sudo systemctl disable minecraft-death-monitor
+```
+
+See [scripts/death-monitor.sh](scripts/death-monitor.sh) and [configs/minecraft-death-monitor.service](configs/minecraft-death-monitor.service) for details.
 
 ### Restore a Backup
 
@@ -449,16 +489,19 @@ sudo systemctl start minecraft
 ### File Locations
 
 ```
-/opt/minecraft/                        # Server root
-/opt/minecraft/paper.jar              # Server jar
-/opt/minecraft/server.properties      # Main config
-/opt/minecraft/plugins/               # Plugins
-/opt/minecraft/world/                 # World saves
-/opt/minecraft/world-backups/         # Reset backups
-/opt/minecraft/backups/               # Manual backups
-/etc/systemd/system/minecraft.service # Service file
-/opt/cloudflare-ddns/update-dns.sh   # DDNS script
-/var/log/cloudflare-ddns.log         # DDNS logs
+/opt/minecraft/                              # Server root
+/opt/minecraft/paper.jar                    # Server jar
+/opt/minecraft/server.properties            # Main config
+/opt/minecraft/plugins/                     # Plugins
+/opt/minecraft/world/                       # World saves
+/opt/minecraft/world-backups/               # Reset backups
+/opt/minecraft/backups/                     # Manual backups
+/opt/minecraft/death-monitor.sh             # Death monitor script
+/etc/systemd/system/minecraft.service       # Minecraft service
+/etc/systemd/system/minecraft-death-monitor.service  # Death monitor service
+/opt/cloudflare-ddns/update-dns.sh         # DDNS script
+/var/log/cloudflare-ddns.log               # DDNS logs
+/var/log/minecraft-death-monitor.log       # Death monitor logs
 ```
 
 ### Ports

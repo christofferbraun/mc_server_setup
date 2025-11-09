@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Death Monitor
+After=minecraft.service
+Requires=minecraft.service
+
+[Service]
+Type=simple
+ExecStart=/opt/minecraft/death-monitor.sh
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
