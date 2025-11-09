@@ -100,7 +100,7 @@ white-list=true
 Download the service file:
 
 ```bash
-sudo wget https://raw.githubusercontent.com/yourusername/minecraft-server-setup/main/configs/minecraft.service -O /etc/systemd/system/minecraft.service
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server-setup/main/configs/minecraft.service -O /etc/systemd/system/minecraft.service
 ```
 
 Or create it manually - see [configs/minecraft.service](configs/minecraft.service)
@@ -146,7 +146,7 @@ sudo netstat -tlnp | grep 1064
 Download and install:
 
 ```bash
-sudo wget https://raw.githubusercontent.com/yourusername/minecraft-server-setup/main/scripts/mcstatus.sh -O /usr/local/bin/mcstatus
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server-setup/main/scripts/mcstatus.sh -O /usr/local/bin/mcstatus
 sudo chmod +x /usr/local/bin/mcstatus
 ```
 
@@ -159,7 +159,7 @@ See [scripts/mcstatus.sh](scripts/mcstatus.sh) for details.
 Download the update script:
 
 ```bash
-sudo wget https://raw.githubusercontent.com/yourusername/minecraft-server-setup/main/scripts/update-paper.sh -O /usr/local/bin/update-paper
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server-setup/main/scripts/update-paper.sh -O /usr/local/bin/update-paper
 sudo chmod +x /usr/local/bin/update-paper
 ```
 
@@ -210,7 +210,7 @@ sudo apt install curl jq -y
 
 # Download script
 sudo mkdir -p /opt/cloudflare-ddns
-sudo wget https://raw.githubusercontent.com/yourusername/minecraft-server-setup/main/scripts/update-dns.sh -O /opt/cloudflare-ddns/update-dns.sh
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server-setup/main/scripts/update-dns.sh -O /opt/cloudflare-ddns/update-dns.sh
 sudo chmod +x /opt/cloudflare-ddns/update-dns.sh
 ```
 
@@ -263,7 +263,7 @@ Quick script to reset hardcore world after deaths.
 ### Installation
 
 ```bash
-sudo wget https://raw.githubusercontent.com/yourusername/minecraft-server-setup/main/scripts/reset-world.sh -O /usr/local/bin/reset-mc-world
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server-setup/main/scripts/reset-world.sh -O /usr/local/bin/reset-mc-world
 sudo chmod +x /usr/local/bin/reset-mc-world
 ```
 
@@ -415,7 +415,7 @@ sudo crontab -l
 Download backup script:
 
 ```bash
-sudo wget https://raw.githubusercontent.com/yourusername/minecraft-server-setup/main/scripts/backup.sh -O /opt/minecraft/backup.sh
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server-setup/main/scripts/backup.sh -O /opt/minecraft/backup.sh
 sudo chmod +x /opt/minecraft/backup.sh
 ```
 
