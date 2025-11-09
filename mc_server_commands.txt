@@ -1,0 +1,26 @@
+# MINECRAFT SERVER QUICK REFERENCE
+
+# Server Control
+sudo systemctl {start|stop|restart|status} minecraft  # Swap for any command
+
+# Logs & Monitoring
+sudo journalctl -u minecraft -f      # Follow logs live
+sudo journalctl -u minecraft -n 50   # Last 50 log lines
+sudo netstat -tlnp | grep *PORT*     # Check if port open
+htop                                 # CPU/memory usage (q to quit)
+free -h                              # Memory usage quick view
+
+# Console Access (if using screen)
+sudo -u minecraft screen -r minecraft  # Attach to console
+# Press Ctrl+A then D to detach
+
+# OP Players & Whitelist
+echo "PlayerName" | sudo -u minecraft tee -a /opt/minecraft/ops.txt
+sudo -u minecraft nano /opt/minecraft/whitelist.json  # Edit whitelist
+sudo systemctl restart minecraft
+
+# Reset World (hardcore deaths)
+reset-mc-world
+
+# DDNS Logs
+tail -f /var/log/cloudflare-ddns.log

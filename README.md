@@ -56,7 +56,7 @@ Add the following (adjust RAM as needed):
 
 ```bash
 #!/bin/bash
-java -Xms2G -Xmx4G -jar paper.jar --nogui
+java -Xms4G -Xmx6G -jar paper.jar --nogui
 ```
 
 Make it executable:
@@ -100,7 +100,7 @@ hardcore=true
 difficulty=hard
 max-players=20
 online-mode=true
-server-port=25565
+server-port=1064
 motd=My Hardcore Server
 gamemode=survival
 pvp=true
@@ -246,8 +246,8 @@ sudo journalctl -u minecraft -f
 Open Minecraft port on Ubuntu:
 
 ```bash
-sudo ufw allow 25565/tcp
-sudo ufw allow 25565/udp
+sudo ufw allow 1064/tcp
+sudo ufw allow 1064/udp
 sudo ufw status
 ```
 
@@ -259,9 +259,9 @@ sudo ufw status
    - **Name:** Minecraft Server
    - **Enabled:** ✓
    - **From:** Any / WAN
-   - **Port:** 25565
+   - **Port:** 1064
    - **Forward IP:** [Ubuntu server local IP, e.g., 192.168.1.100]
-   - **Forward Port:** 25565
+   - **Forward Port:** 1064
    - **Protocol:** TCP/UDP
 
 Find your server's local IP:
@@ -280,10 +280,10 @@ curl ifconfig.me
 
 ```bash
 # Check if Minecraft is listening
-sudo netstat -tlnp | grep 25565
+sudo netstat -tlnp | grep 1064
 
 # Alternative with ss
-sudo ss -tlnp | grep 25565
+sudo ss -tlnp | grep 1064
 
 # Test from external tool
 # Visit: https://mcsrvstat.us/
@@ -576,7 +576,7 @@ echo "=== Minecraft Server Status ==="
 sudo systemctl status minecraft --no-pager -l
 echo ""
 echo "=== Port Status ==="
-sudo netstat -tlnp | grep 25565
+sudo netstat -tlnp | grep 1064
 echo ""
 echo "=== Recent Logs ==="
 sudo journalctl -u minecraft -n 20 --no-pager
@@ -649,7 +649,7 @@ df -h
 du -sh /opt/minecraft/*
 
 # Check network connections
-sudo netstat -an | grep 25565
+sudo netstat -an | grep 1064
 ```
 
 ### Player Activity
@@ -773,7 +773,7 @@ sudo journalctl -u minecraft -n 100
 
 1. **Port already in use:**
    ```bash
-   sudo netstat -tlnp | grep 25565
+   sudo netstat -tlnp | grep 1064
    # Kill process if needed
    sudo kill -9 [PID]
    ```
@@ -807,15 +807,15 @@ sudo systemctl status minecraft
 **Check port is open locally:**
 
 ```bash
-sudo netstat -tlnp | grep 25565
+sudo netstat -tlnp | grep 1064
 ```
 
 **Check firewall:**
 
 ```bash
 sudo ufw status
-sudo ufw allow 25565/tcp
-sudo ufw allow 25565/udp
+sudo ufw allow 1064/tcp
+sudo ufw allow 1064/udp
 ```
 
 **Check UniFi port forward:**
@@ -1032,8 +1032,8 @@ This guide covers:
 - ✅ Troubleshooting common issues
 
 Your server should now be fully operational and accessible at:
-- Direct IP: `your-public-ip:25565`
-- Domain: `mc.yourdomain.com:25565`
+- Direct IP: `your-public-ip:1064`
+- Domain: `mc.yourdomain.com:1064`
 - With SRV: `mc.yourdomain.com`
 
 For additional help, check:
