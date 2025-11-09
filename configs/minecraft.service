@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Paper Server
+After=network.target
+
+[Service]
+User=minecraft
+WorkingDirectory=/opt/minecraft
+Type=forking
+ExecStart=/usr/bin/screen -dmS minecraft /opt/minecraft/start.sh
+ExecStop=/usr/bin/screen -S minecraft -X stuff "stop\n"
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
