@@ -17,9 +17,10 @@ echo "$(date): Death monitor started" >> "$LOG_FILE"
 # Follow the journalctl logs in real-time
 journalctl -u minecraft -f -n 0 | while read -r line; do
     # Check if line contains death message
-    if echo "$line" | grep -qE "(fell from a high place|was slain by|was shot by|drowned|experienced kinetic energy|blew up|was killed|burned to death|tried to swim in lava|was squashed|went off with a bang|was impaled|starved to death|suffocated|was poked to death|was pricked to death|walked into a cactus|was roasted|was struck by lightning|was frozen|was skewered|death\.attack\.|died)"; then
+    # Comprehensive list of all Minecraft death messages
+    if echo "$line" | grep -qE "(was shot by|was pricked to death|went up in flames|walked into fire|was squished|was roasted in dragon|drowned|died from dehydration|hit the ground too hard|blew up|was squashed by|was skewered by|was fireballed by|went off with a bang|experienced kinetic energy|froze to death|died|was killed|discovered the floor was lava|walked into the danger zone|suffocated in a wall|was killed by.*magic|tried to swim in lava|was struck by lightning|was smashed by|was slain by|burned to death|fell out of the world|left the confines|was obliterated by|was speared by|was impaled on|starved to death|was stung to death|was poked to death|was pummeled by|withered away)"; then
         # Extract player name
-        PLAYER=$(echo "$line" | grep -oP '(?<=INFO\]: )[A-Za-z0-9_]+(?= (fell|was|drowned|experienced|blew|burned|tried|went|walked|death|died))')
+        PLAYER=$(echo "$line" | grep -oP '(?<=INFO\]: )[A-Za-z0-9_]+(?= (was|drowned|experienced|blew|went|burned|tried|hit|discovered|suffocated|died|fell|left|starved|withered|walked|froze))')
         
         if [ ! -z "$PLAYER" ]; then
             echo "$(date): ===========================================" >> "$LOG_FILE"
