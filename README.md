@@ -496,6 +496,7 @@ sudo systemctl start minecraft
 /opt/minecraft/world/                       # World saves
 /opt/minecraft/world-backups/               # Reset backups
 /opt/minecraft/backups/                     # Manual backups
+/opt/minecraft/reset-world-auto.sh          # Auto-reset script (no confirmation)
 /opt/minecraft/death-monitor.sh             # Death monitor script
 /etc/systemd/system/minecraft.service       # Minecraft service
 /etc/systemd/system/minecraft-death-monitor.service  # Death monitor service
