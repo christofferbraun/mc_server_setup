@@ -278,6 +278,10 @@ Automatically monitors server logs and resets the world when any player dies.
 **Installation:**
 
 ```bash
+# Download auto-reset script (no confirmation needed)
+sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server_setup/main/scripts/reset-world-auto.sh -O /opt/minecraft/reset-world-auto.sh
+sudo chmod +x /opt/minecraft/reset-world-auto.sh
+
 # Download death monitor script
 sudo wget https://raw.githubusercontent.com/christofferbraun/mc_server_setup/main/scripts/death-monitor.sh -O /opt/minecraft/death-monitor.sh
 sudo chmod +x /opt/minecraft/death-monitor.sh
